@@ -12,6 +12,7 @@ class Jeu:
         self.all_monsters = pygame.sprite.Group()
         self.pressed = {}
         self.spawn_monster() # generer automatiquement un monstre au demarrage du jeu
+        self.spawn_monster()
         
 
 
