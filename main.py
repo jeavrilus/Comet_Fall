@@ -31,6 +31,9 @@ while running:
     # application de l'image de l'instance "player"
     win_surface.blit(jeu.player.image, jeu.player.rect)
 
+    # actualiser le jauge du joueur
+    jeu.player.update_health_bar(win_surface)
+
     # recuperer les projectiles du joueur
     for projectile in jeu.player.all_projectiles:
         projectile.move()
