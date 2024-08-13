@@ -29,14 +29,6 @@ class Monster(pygame.sprite.Sprite):
 
     # Creer un jauge de vie
     def update_health_bar(self, surface):
-        # # definir une couleur pour le jauge (vert clair)
-        # bar_color = (111, 210, 46)
-        # # definir une couleur d'arriere plan pour le jauge (gris fonce)
-        # back_bar_color = (60, 63, 60)
-        # # definir la position, la largeur et l'epaisseur du jauge
-        # bar_position= [self.rect.x + 10, self.rect.y - 20, self.health, 5]
-        # # definir la position de l'arriere plan du jauge
-        # back_bar_position = [self.rect.x + 10, self.rect.y - 20, self.max_health, 5]
         # dessiner le jauge
         pygame.draw.rect(surface,(60, 63, 60), [self.rect.x + 10, self.rect.y - 20, self.max_health, 5])
         pygame.draw.rect(surface, (111, 210, 46), [self.rect.x + 10, self.rect.y - 20, self.health, 5])
