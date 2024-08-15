@@ -2,6 +2,8 @@ from typing import Any
 import pygame
 from projectile import Projectile
 
+
+# DEFINITION DE LA CLASSE PLAYER
 class Player(pygame.sprite.Sprite):
     def __init__(self, jeu) -> None:
         super().__init__()
@@ -20,6 +22,10 @@ class Player(pygame.sprite.Sprite):
         if self.health - amount > amount:
             # infliger les degats
             self.health -= amount
+        else:
+            # si le joueur n'a plus de points de vie
+            self.jeu.game_over()
+
 
     # Creer un jauge de vie
     def update_health_bar(self, surface):
