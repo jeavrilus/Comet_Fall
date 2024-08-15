@@ -39,7 +39,7 @@ jeu = Jeu()
 running = True
 # BOUCLE PRINCIPALE DU JEU (Tant que le jeu est actif)
 while running:
-    # application de la fenêtre du jeu et de son arriere plan
+    # application de la fenêtre du jeu et de son arrière plan
     win_surface.blit(background_image, (0, -200))
 
     # vérifier si le jeu a commence ou non
@@ -52,13 +52,12 @@ while running:
         win_surface.blit(banner_image, banner_rect)
         
 
-
     # mettre à jour la fenêtre (update/flip)
     pygame.display.flip()
 
     # On boucle sur les évenements
     for event in pygame.event.get():
-        # si le type de l'évenement est fermeture de fenêtre (X)
+        # si le type de l'événement est fermeture de fenêtre (X)
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
@@ -78,4 +77,4 @@ while running:
             # vérifier si le bouton de la souris est en collision avec le bouton play (play_button)
             if play_button_rect.collidepoint(event.pos):
                 # mettre le jeu en mode "lancé"
-                jeu.is_playing = True
+                jeu.start()

@@ -1,6 +1,8 @@
 import pygame
 import random
 
+
+# DEFINITION DE LA CLASSE MONSTER
 class Monster(pygame.sprite.Sprite):
     # Charger les caracteristiques de base du monstre lorsqu'on en cree un nouveau ds le jeu
     def __init__(self, jeu) -> None:
