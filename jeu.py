@@ -15,9 +15,19 @@ class Jeu:
         # définir un groupe de monstre
         self.all_monsters = pygame.sprite.Group()
         self.pressed = {}
-        self.spawn_monster() # générer automatiquement un monstre au démarrage du self
+
+    def start(self):
+        self.is_playing = True
+        # générer automatiquement les monstres au démarrage
         self.spawn_monster()
+        self.spawn_monster() 
         
+    def game_over(self):
+        # remettre le jeu à son état initial i.e (retirer les monstres, remettre le joueur a 100 points de vie, mettre le jeu en attente)
+        self.all_monsters = pygame.sprite.Group()
+        self.player.health = self.player.max_health
+        self.is_playing = False
+
     def update(self, win_surface):
         # application de l'image de l'instance "player"
         win_surface.blit(self.player.image, self.player.rect)
