@@ -45,17 +45,24 @@ class Jeu:
         for projectile in self.player.all_projectiles:
             projectile.move()
 
-        # récupérer les monstres du self
+        # récupérer les monstres du jeu
         for monster in self.all_monsters:
             monster.forward()
             # placer le jauge de vie
             monster.update_health_bar(win_surface)
+
+        # récupérer les comètes du jeu
+        for comet in self.comet_event.all_comets:
+            comet.fall()
 
         # application de l'ensemble des images du groupe de projectiles
         self.player.all_projectiles.draw(win_surface)
 
         # application de l'ensemble des images du groupe de monstres
         self.all_monsters.draw(win_surface)
+
+        # application de l'ensemble des images du groupe comète
+        self.comet_event.all_comets.draw(win_surface)
 
         # vérifier si le joueur souhaite aller à droite ou à gauche
         if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x + self.player.rect.width < 1280:
