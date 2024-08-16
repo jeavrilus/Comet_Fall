@@ -7,5 +7,7 @@ class Comet(pygame.sprite.Sprite):
         # définir l'image associé à cette comète
         self.image = pygame.image.load("assets/comet.png")
         self.rect = self.image.get_rect()
+        self.speed = 1
         
-
+    def fall(self):
+        self.rect.y += self.speed
