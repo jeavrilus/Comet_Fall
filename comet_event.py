@@ -23,9 +23,7 @@ class CommetFallEvent:
     
     def comet_fall(self):
         # creer une nouvelle instance de la classe Comet(une premiere boule de feu)
-        comet = Comet()
-        self.all_comets.add(comet)
-
+        self.all_comets.add(Comet(self))
 
     def attempt_fall(self):
         # qd la jauge est totalement chargé ou remplie
@@ -33,11 +31,13 @@ class CommetFallEvent:
             self.comet_fall()
             self.reset_percent()
         
-
     def update_bar(self, surface): # créer un jauge au bas de l'écran
 
         # ajouter du pourcentage à la barre
         self.add_percent()
+
+        # appel de la méthode pour essayer de déclencher la pluie
+        self.attempt_fall()
 
         # barre noir (arrière plan du jauge d'événement)
         pygame.draw.rect(surface, (0, 0, 0),[
@@ -53,5 +53,4 @@ class CommetFallEvent:
             (surface.get_width() / 100) * self.percent, # longueur de la fenetre
             10 # épaisseur de la barre
         ])
-        # appel de la méthode pour essayer de déclencher la pluie
-        self.attempt_fall()
+        
