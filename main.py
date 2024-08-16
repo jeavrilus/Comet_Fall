@@ -77,4 +77,4 @@ while running:
             # vérifier si le bouton de la souris est en collision avec le bouton play (play_button)
             if play_button_rect.collidepoint(event.pos):
                 # mettre le jeu en mode "lancé"
-                jeu.start()
+                jeu.start()  
