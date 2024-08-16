@@ -22,6 +22,11 @@ class Comet(pygame.sprite.Sprite):
 
         # ne tombe pas sur le sol
         if self.rect.y >= 500:
-            print("sol")
+            self.remove()
+
+        # vérifier si la comète rentre en collision avec le joueur
+        if self.comet_event.jeu.check_collision(self, self.comet_event.jeu.all_players):
             # retirer la comète du jeu
             self.remove()
+            # faire subir des dégats au joueur
+            self.comet_event.jeu.player.damage(20)
