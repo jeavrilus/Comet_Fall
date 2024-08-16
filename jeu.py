@@ -35,7 +35,7 @@ class Jeu:
         # application de l'image de l'instance "player"
         win_surface.blit(self.player.image, self.player.rect)
 
-        # actualiser le jauge du joueur
+        # actualiser la jauge du joueur
         self.player.update_health_bar(win_surface)
 
         # actualiser la barre d'événement du jeu
@@ -48,7 +48,7 @@ class Jeu:
         # récupérer les monstres du jeu
         for monster in self.all_monsters:
             monster.forward()
-            # placer le jauge de vie
+            # placer la jauge de vie
             monster.update_health_bar(win_surface)
 
         # récupérer les comètes du jeu
