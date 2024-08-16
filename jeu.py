@@ -14,7 +14,7 @@ class Jeu:
         self.player = Player(self)
         self.all_players.add(self.player)
         # générer l'événement
-        self.comet_event = CommetFallEvent()
+        self.comet_event = CommetFallEvent(self)
         # définir un groupe de monstre
         self.all_monsters = pygame.sprite.Group()
         self.pressed = {}
