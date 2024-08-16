@@ -8,7 +8,7 @@ class CommetFallEvent:
     def __init__(self, jeu) -> None:
         self.percent = 0
         self.percent_speed = 5
-        self.jeu = jeu
+        self.jeu = jeu 
 
         # définir un groupe de sprite pour stocker les comètes
         self.all_comets = pygame.sprite.Group()
@@ -23,8 +23,9 @@ class CommetFallEvent:
         self.percent = 0
     
     def comet_fall(self):
-        # creer une nouvelle instance de la classe Comet(une premiere boule de feu)
-        self.all_comets.add(Comet(self))
+        # Faire apparaître entre 1 et 10  comètes
+        for i in range(1, 10):
+            self.all_comets.add(Comet(self))
 
     def attempt_fall(self):
         # qd la jauge est totalement chargé ou remplie
