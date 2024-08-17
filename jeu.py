@@ -26,8 +26,9 @@ class Jeu:
         self.spawn_monster() 
         
     def game_over(self):
-        # remettre le jeu à son état initial i.e (retirer les monstres, remettre le joueur a 100 points de vie, mettre le jeu en attente)
+        # remettre le jeu à son état initial i.e (retirer les comètes, retirer les monstres, remettre le joueur a 100 points de vie, mettre le jeu en attente)
         self.all_monsters = pygame.sprite.Group()
+        self.comet_event.all_comets = pygame.sprite.Group()
         self.player.health = self.player.max_health
         self.comet_event.reset_percent()
         self.is_playing = False
