@@ -9,6 +9,7 @@ class CommetFallEvent:
         self.percent = 0
         self.percent_speed = 5
         self.jeu = jeu 
+        self.fall_mode = False
 
         # définir un groupe de sprite pour stocker les comètes
         self.all_comets = pygame.sprite.Group()
@@ -28,27 +29,24 @@ class CommetFallEvent:
             self.all_comets.add(Comet(self))
 
     def attempt_fall(self):
-        # qd la jauge est totalement chargé ou remplie
-        if self.is_full_loaded():
+        # quand la barre est totalement remplie
+        if self.is_full_loaded() and len(self.jeu.all_monsters) == 0:
             self.comet_fall()
-            self.reset_percent()
+            self.fall_mode = True # activer l'événement
         
-    def update_bar(self, surface): # créer un jauge au bas de l'écran
+    def update_bar(self, surface): # créer une barre d'événement au bas de l'écran
 
         # ajouter du pourcentage à la barre
         self.add_percent()
 
-        # appel de la méthode pour essayer de déclencher la pluie
-        self.attempt_fall()
-
-        # barre noir (arrière plan du jauge d'événement)
+        # barre noir (arrière plan de la barre d'événement)
         pygame.draw.rect(surface, (0, 0, 0),[
             0, # l'axe des x
             surface.get_height() - 20, # l'axe des y
             surface.get_width(), # longueur de la fenetre
             10 # épaisseur de la barre
         ])
-        # barre rouge (jauge d'événement qui va s'actualiser)
+        # barre rouge (barre d'événement qui va s'actualiser)
         pygame.draw.rect(surface, (187, 11, 11),[
             0, # l'axe des x
             surface.get_height() - 20, # l'axe des y
