@@ -8,7 +8,7 @@ import pygame
 class Jeu:
     def __init__(self) -> None:
         # définir si le jeu a commencé ou non
-        self.is_playing = True
+        self.is_playing = False
         # générer notre joueur
         self.all_players = pygame.sprite.Group()
         self.player = Player(self)
@@ -29,6 +29,7 @@ class Jeu:
         # remettre le jeu à son état initial i.e (retirer les monstres, remettre le joueur a 100 points de vie, mettre le jeu en attente)
         self.all_monsters = pygame.sprite.Group()
         self.player.health = self.player.max_health
+        self.comet_event.reset_percent()
         self.is_playing = False
 
     def update(self, win_surface):
