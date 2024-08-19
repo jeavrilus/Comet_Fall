@@ -1,21 +1,21 @@
 import pygame
 import random
-
+import animation
 
 # DEFINITION DE LA CLASSE MONSTER
-class Monster(pygame.sprite.Sprite):
+class Monster(animation.AnimateSprite):
     # Charger les caracteristiques de base du monstre lorsqu'on en cree un nouveau ds le jeu
     def __init__(self, jeu) -> None:
-        super().__init__()
+        super().__init__("mummy")
         self.jeu = jeu
         self.health = 100
         self.max_health = 100
         self.attack = 0.3
-        self.image = pygame.image.load("assets/mummy.png")
         self.rect = self.image.get_rect()
         self.rect.x = 1000 + random.randint(0, 280)
         self.rect.y = 540
         self.speed = random.randint(1,2)
+        self.start_animation()
 
     def damage(self, amount):
         # infliger les degats
@@ -34,6 +34,10 @@ class Monster(pygame.sprite.Sprite):
 
                 # appel de la méthode pour essayer de déclencher la pluie des comètes
                 self.jeu.comet_event.attempt_fall()
+
+    # méthode qui s'occupe de l'animation
+    def update_animation(self):
+        self.animate(loop=True)
 
     # Créer une jauge de vie
     def update_health_bar(self, surface):
