@@ -13,8 +13,9 @@ win_surface = pygame.display.set_mode((1280, 720))
 # titre
 pygame.display.set_caption("Comet Fall")
 
-# CADENCE DE RAFRAICHISSEMENT
-FPS = 60
+# CADENCE DE RAFRAICHISSEMENT ou CLOCK
+clock = pygame.time.Clock()
+FPS = 100
 
 # CHARGEMENT DE L'IMAGE DE L'ARRIERRE PLAN
 background_image = pygame.image.load("assets/bg.jpg")
@@ -78,3 +79,6 @@ while running:
             if play_button_rect.collidepoint(event.pos):
                 # mettre le jeu en mode "lancé"
                 jeu.start()  
+
+    # fixer le nombre de fps
+    clock.tick(FPS)
