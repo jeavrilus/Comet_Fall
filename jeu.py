@@ -39,6 +39,9 @@ class Jeu:
 
         # actualiser la jauge du joueur
         self.player.update_health_bar(win_surface)
+        
+        # actualiser l'animation du joueur
+        self.player.update_animation()
 
         # actualiser la barre d'événement du jeu
         self.comet_event.update_bar(win_surface)
@@ -52,6 +55,7 @@ class Jeu:
             monster.forward()
             # placer la jauge de vie
             monster.update_health_bar(win_surface)
+            monster.update_animation()
 
         # récupérer les comètes du jeu
         for comet in self.comet_event.all_comets:
