@@ -4,7 +4,7 @@ import animation
 
 # DEFINITION DE LA CLASSE MONSTER
 class Monster(animation.AnimateSprite):
-    # Charger les caracteristiques de base du monstre lorsqu'on en cree un nouveau ds le jeu
+    # Charger les caractéristiques de base du monstre lorsqu'on en crée un nouveau dans le jeu
     def __init__(self, jeu) -> None:
         super().__init__("mummy")
         self.jeu = jeu
@@ -18,11 +18,11 @@ class Monster(animation.AnimateSprite):
         self.start_animation()
 
     def damage(self, amount):
-        # infliger les degats
+        # infliger les dégâts
         self.health -= amount
-        # verifier si son nouveau nombre de points de vie est inferieur a 0
+        # vérifier si son nouveau nombre de points de vie est inférieur à 0
         if self.health <= 0:
-            # Reapparaitre comme un nouveau montre avec des caracteristiques differentes en x, health et en speed
+            # Réapparaître comme un nouveau monstre avec des caractéristiques différentes en x, health et en speed
             self.rect.x = 1000 + random.randint(0, 280)
             self.health = self.max_health
             self.speed = random.randint(1, 2)
