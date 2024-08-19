@@ -5,17 +5,20 @@ import animation
 # DEFINITION DE LA CLASSE MONSTER
 class Monster(animation.AnimateSprite):
     # Charger les caractéristiques de base du monstre lorsqu'on en crée un nouveau dans le jeu
-    def __init__(self, jeu) -> None:
-        super().__init__("mummy")
+    def __init__(self, jeu, name, size, offset=0) -> None:
+        super().__init__(name, size)
         self.jeu = jeu
         self.health = 100
         self.max_health = 100
         self.attack = 0.3
         self.rect = self.image.get_rect()
         self.rect.x = 1000 + random.randint(0, 280)
-        self.rect.y = 540
-        self.speed = random.randint(1,2)
+        self.rect.y = 540 - offset
         self.start_animation()
+
+    def set_velocity(self, speed):
+        self.default_speed = speed 
+        self.speed = random.randint(1,2)
 
     def damage(self, amount):
         # infliger les dégâts
@@ -25,7 +28,7 @@ class Monster(animation.AnimateSprite):
             # Réapparaître comme un nouveau monstre avec des caractéristiques différentes en x, health et en speed
             self.rect.x = 1000 + random.randint(0, 280)
             self.health = self.max_health
-            self.speed = random.randint(1, 2)
+            self.speed = random.randint(1, self.default_speed)
 
             # si la barre d'événement est chargée à son maximum
             if self.jeu.comet_event.is_full_loaded():
@@ -53,3 +56,18 @@ class Monster(animation.AnimateSprite):
          else:
             #  infliger des dégats au joueur
             self.jeu.player.damage(self.attack)
+
+# DEFINITION DE LA CLASSE MUMMY
+class Mummy(Monster):
+    def __init__(self, jeu):
+        super().__init__(jeu, "mummy", (130, 130))
+        self.set_velocity(3)
+
+# DEFINITION DE LA CLASSE ALIEN
+class Alien(Monster):
+    def __init__(self, jeu):
+        super().__init__(jeu, "alien", (300, 300), 130)
+        self.health = 250
+        self.max_health = 250
+        self.attack = 0.8
+        self.set_velocity(2)
