@@ -1,5 +1,6 @@
 from player import Player
-from monster import Monster
+from monster import Mummy
+from monster import Alien
 from comet_event import CommetFallEvent
 import pygame
 
@@ -22,8 +23,9 @@ class Jeu:
     def start(self):
         self.is_playing = True
         # générer automatiquement les monstres au démarrage
-        self.spawn_monster()
-        self.spawn_monster() 
+        self.spawn_monster(Mummy)
+        self.spawn_monster(Mummy) 
+        self.spawn_monster(Alien)
         
     def game_over(self):
         # remettre le jeu à son état initial i.e (retirer les comètes, retirer les monstres, remettre le joueur a 100 points de vie, mettre le jeu en attente)
@@ -79,6 +81,5 @@ class Jeu:
     def check_collision(self, sprite, group): # comparaison d'1 sprite à un groupe de sprite
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask) # renvoyer la comparaison de collision
 
-    def spawn_monster(self):
-        monster = Monster(self)
-        self.all_monsters.add(monster) # ajouter un monstre au groupe à chaque appel de spawn_monster
+    def spawn_monster(self, monster_class_name):
+        self.all_monsters.add(monster_class_name.__call__(self))
