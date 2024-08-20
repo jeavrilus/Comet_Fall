@@ -68,7 +68,14 @@ while running:
 
             # détecter si la touche "space" est pressée pr lancer un projectile
             if event.key == pygame.K_SPACE:
-                jeu.player.launch_projectile()
+                if jeu.is_playing:
+                    jeu.player.launch_projectile()
+                else:
+                    # mettre le jeu en mode "lancé"
+                    jeu.start()  
+                    # jouer le son
+                    jeu.sound_manager.play("click")
+
 
         # détecter si cette touche du clavier est relachée
         elif event.type == pygame.KEYUP:
@@ -79,6 +86,8 @@ while running:
             if play_button_rect.collidepoint(event.pos):
                 # mettre le jeu en mode "lancé"
                 jeu.start()  
+                # jouer le son
+                jeu.sound_manager.play("click")
 
     # fixer le nombre de fps
     clock.tick(FPS)
